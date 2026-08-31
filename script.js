@@ -950,7 +950,8 @@ function closeMissionLog() {
 }
 
 missionActionBtn.addEventListener('click', handleMissionAction);
-resetBtn.addEventListener('click', () => {
+document.querySelectorAll('.reset-operation-btn').forEach((button) => {
+  button.addEventListener('click', () => {
   if (confirm('RESET OPERATION? This will clear all progress.')) {
     resetOperation();
     closeMissionLog();
@@ -962,6 +963,7 @@ missionLogOverlay.addEventListener('click', (event) => {
   if (event.target === missionLogOverlay) {
     closeMissionLog();
   }
+  });
 });
 
 render();
