@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="OPERATION: HELSINKI FOX — a retro tactical scavenger hunt through Helsinki."
+    />
+    <title>OPERATION: HELSINKI FOX</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="page-shell">
+      <header class="hud-bar">
+        <div class="brand-block">
+          <div class="brand-title">OP: HELSINKI FOX</div>
+          <div class="header-meta">
+            <span id="missionCounter" class="mission-counter">01 / 06</span>
+            <div class="link-line">
+              <span class="link-dot" aria-hidden="true"></span>
+              <span>LINK</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-strip">
+          <div class="agent-list" aria-label="Squad members">
+            <span class="agent-tag"><span class="agent-icon" aria-hidden="true">S</span><span>SNAKE</span></span>
+            <span class="agent-tag"><span class="agent-icon" aria-hidden="true">C</span><span>COMMAND</span></span>
+            <span class="agent-tag"><span class="agent-icon" aria-hidden="true">M</span><span>MINI FOX</span></span>
+          </div>
+          <button id="missionLogToggle" class="log-toggle" type="button">MISSION LOG</button>
+        </div>
+      </header>
+
+      <main class="mission-layout">
+        <aside class="sidebar desktop-grid" aria-label="Mission list section">
+          <section class="panel">
+            <div class="panel-header">
+              <span>MISSION GRID</span>
+            </div>
+            <ul id="missionList" class="mission-list" aria-live="polite"></ul>
+          </section>
+        </aside>
+
+        <section class="panel mission-panel" aria-live="polite">
+          <div class="mission-panel-top">
+            <div class="mission-kicker">
+              <span id="missionActiveLabel">ACTIVE MISSION</span>
+              <span class="mission-divider">//</span>
+              <span id="missionIndexLabel">01</span>
+            </div>
+          </div>
+
+          <div id="missionContent" class="mission-content"></div>
+
+          <div class="panel-actions">
+            <button id="missionActionBtn" class="primary-btn" type="button">COMPLETE MISSION</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="missionLogOverlay" class="mission-log-overlay" aria-hidden="true">
+      <div class="log-sheet">
+        <div class="log-header">
+          <span>MISSION LOG</span>
+          <button id="missionLogClose" class="close-btn" type="button" aria-label="Close mission log">×</button>
+        </div>
+        <ul id="missionListOverlay" class="mission-list log-list" aria-live="polite"></ul>
+        <div class="log-footer">
+          <button id="resetBtn" class="secondary-btn" type="button">RESET OPS</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="radar" aria-hidden="true">
+      <span class="radar-ring ring-1"></span>
+      <span class="radar-ring ring-2"></span>
+      <span class="radar-ring ring-3"></span>
+      <span class="radar-core"></span>
+      <span class="radar-label">RADAR</span>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
