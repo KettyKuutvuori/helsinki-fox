@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'helsinki-fox-operation-state-v1';
+const APP_STORAGE_KEYS = [STORAGE_KEY];
 
 const missionDefinitions = [
   {
@@ -109,14 +110,26 @@ const missionLogClose = document.querySelector('#missionLogClose');
 const missionCounterEl = document.querySelector('#missionCounter');
 const missionIndexLabelEl = document.querySelector('#missionIndexLabel');
 const missionActiveLabelEl = document.querySelector('#missionActiveLabel');
+const resetDialog = document.querySelector('#resetDialog');
+const resetCancelBtn = document.querySelector('#resetCancelBtn');
+const resetConfirmBtn = document.querySelector('#resetConfirmBtn');
 
 let state = loadState();
+
+function createInitialState() {
+  return {
+    ...defaultState,
+    missionStates: [...defaultState.missionStates],
+    rations: { ...defaultState.rations },
+    log: [...defaultState.log]
+  };
+}
 
 function loadState() {
   const raw = localStorage.getItem(STORAGE_KEY);
 
   if (!raw) {
-    return { ...defaultState, rations: { ...defaultState.rations }, log: [...defaultState.log] };
+    return createInitialState();
   }
 
   try {
@@ -138,7 +151,7 @@ function loadState() {
     });
   } catch (error) {
     console.warn('Failed to parse saved game state. Resetting to default.', error);
-    return { ...defaultState, rations: { ...defaultState.rations }, log: [...defaultState.log] };
+    return createInitialState();
   }
 }
 
@@ -248,13 +261,11 @@ function completeMission(index) {
 }
 
 function resetOperation() {
-  state = {
-    ...defaultState,
-    rations: { ...defaultState.rations },
-    log: [...defaultState.log]
-  };
-  saveState();
+  APP_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key));
+  state = createInitialState();
+  closeMissionLog();
   render();
+  console.log('Operation reset complete');
 }
 
 function renderMissionList() {
@@ -952,18 +963,25 @@ function closeMissionLog() {
 missionActionBtn.addEventListener('click', handleMissionAction);
 document.querySelectorAll('.reset-operation-btn').forEach((button) => {
   button.addEventListener('click', () => {
-  if (confirm('RESET OPERATION? This will clear all progress.')) {
-    resetOperation();
-    closeMissionLog();
-  }
+    resetDialog.showModal();
+  });
 });
+
+resetCancelBtn.addEventListener('click', () => {
+  resetDialog.close();
+});
+
+resetConfirmBtn.addEventListener('click', () => {
+  resetDialog.close();
+  resetOperation();
+});
+
 missionLogToggle.addEventListener('click', openMissionLog);
 missionLogClose.addEventListener('click', closeMissionLog);
 missionLogOverlay.addEventListener('click', (event) => {
   if (event.target === missionLogOverlay) {
     closeMissionLog();
   }
-  });
 });
 
 render();
