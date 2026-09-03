@@ -27,9 +27,9 @@
 
         <div class="status-strip">
           <div class="agent-list" aria-label="Squad members">
-            <span class="agent-tag"><span class="agent-icon" aria-hidden="true">S</span><span>SNAKE</span></span>
-            <span class="agent-tag"><span class="agent-icon" aria-hidden="true">C</span><span>COMMAND</span></span>
-            <span class="agent-tag"><span class="agent-icon" aria-hidden="true">M</span><span>MINI FOX</span></span>
+            <span class="agent-tag"><img class="agent-icon" src="assets/snake.jpg" alt="" /><span>SNAKE</span></span>
+            <span class="agent-tag"><img class="agent-icon" src="assets/commad.jpg" alt="" /><span>COMMAND</span></span>
+            <span class="agent-tag"><img class="agent-icon" src="assets/mini%20fox.jpg" alt="" /><span>MINI FOX</span></span>
           </div>
           <button id="missionLogToggle" class="log-toggle" type="button">MISSION LOG</button>
         </div>
@@ -77,20 +77,11 @@
       </div>
     </div>
 
-    <dialog id="resetDialog" class="reset-dialog" aria-labelledby="resetDialogTitle">
-      <p id="resetDialogTitle">Reset all mission progress?</p>
-      <div class="reset-dialog-actions">
-        <button id="resetCancelBtn" class="secondary-btn" type="button">CANCEL</button>
-        <button id="resetConfirmBtn" class="primary-btn" type="button">RESET</button>
-      </div>
-    </dialog>
-
     <div class="radar" aria-hidden="true">
       <span class="radar-ring ring-1"></span>
       <span class="radar-ring ring-2"></span>
       <span class="radar-ring ring-3"></span>
       <span class="radar-core"></span>
-      <span class="radar-label">RADAR</span>
     </div>
 
     <script src="script.js"></script>
