@@ -1402,10 +1402,15 @@ button {
   }
 
   .agent-list {
+    flex: 1;
+    flex-wrap: nowrap;
+    min-width: 0;
     gap: 4px;
   }
 
   .agent-tag {
+    flex: 0 1 auto;
+    white-space: nowrap;
     gap: 3px;
     padding: 3px 5px;
     font-size: 0.42rem;
